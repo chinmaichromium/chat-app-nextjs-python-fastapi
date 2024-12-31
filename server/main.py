@@ -13,7 +13,6 @@ app_url = os.getenv("APP_URL")
 if not openai_api_key or not app_url:
     raise ValueError("environment variables OPENAI_KEY and APP_URL must be set")
 
-
 app = FastAPI()
 
 # Configure Socket.IO with CORS
@@ -78,4 +77,3 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
-    
