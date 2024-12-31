@@ -5,8 +5,14 @@ from openai import OpenAI
 import socketio
 from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
+load_dotenv(dotenv_path='../.env')
+openai_api_key = os.getenv("OPENAI_KEY")
+app_url = os.getenv("APP_URL")
+
+
+if not openai_api_key or not app_url:
+    raise ValueError("environment variables OPENAI_KEY and APP_URL must be set")
+
 
 app = FastAPI()
 
@@ -17,13 +23,11 @@ sio = socketio.AsyncServer(
 )
 app.mount("/socket.io", socketio.ASGIApp(socketio_server=sio))
 
+
 # Initialize the OpenAI client
 client = OpenAI(
-    api_key="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"
+    api_key=openai_api_key
 )
-
-if not client.api_key:
-    raise ValueError("OPENAI_API_KEY is not set in the environment")
 
 
 @sio.event
@@ -72,3 +76,6 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+    

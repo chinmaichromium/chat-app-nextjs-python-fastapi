@@ -21,11 +21,11 @@ export default function Chat() {
 
   return (
     <div className="mx-auto max-w-4xl p-6">
-      <Card className="h-[85vh] rounded-lg shadow-lg border border-muted">
+      <Card className="h-[95vh] rounded-lg shadow-lg border border-muted">
         <CardHeader className="text-center">
           <h2 className="text-lg font-semibold">Chat with Bot</h2>
         </CardHeader>
-        <CardContent className="h-[70vh]">
+        <CardContent className="h-[78vh]">
           <ScrollArea ref={chatContainerRef} className="h-full pr-4">
             {messages.map((msg, index) => (
               <div

@@ -17,7 +17,7 @@ export const useChat = () => {
   const inputText = useChatStore((state) => state.inputText);
 
   useEffect(() => {
-    socket = io(process.env.FASTAPI_URL, {
+    socket = io(process.env.NEXT_PUBLIC_FASTAPI_URL, {
       path: "/socket.io",
       reconnection: true,
     });
