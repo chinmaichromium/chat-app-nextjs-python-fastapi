@@ -1,7 +1,10 @@
 "use client";
 
-import { useChat } from "@/app/_common/hooks/useChat";
-import { setInputText, useChatStore } from "@/app/_common/stores/useChatStore";
+import { useChat } from "@/app/chat/_common/hooks/useChat";
+import {
+  setInputText,
+  useChatStore,
+} from "@/app/chat/_common/stores/useChatStore";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

@@ -15,7 +15,8 @@ type ThemeConfig = {
     | "green"
     | "blue"
     | "yellow"
-    | "violet";
+    | "violet"
+    | "teal";
   baseRadius: number;
   setBaseColor: (baseColor: ThemeConfig["baseColor"]) => void;
   setBaseMode: (baseMode: ThemeConfig["baseMode"]) => void;
@@ -25,8 +26,8 @@ type ThemeConfig = {
 export const useThemeStore = create(
   persist<ThemeConfig>(
     (set) => ({
-      baseColor: "green",
-      baseMode: "light",
+      baseColor: "teal",
+      baseMode: "dark",
       baseRadius: 0.5,
       setBaseColor: (baseColor: ThemeConfig["baseColor"]) => set({ baseColor }),
       setBaseMode: (baseMode: ThemeConfig["baseMode"]) => set({ baseMode }),

@@ -1,15 +1,21 @@
 "use client";
 
-import ThemeSwitcher from "./_common/components/themes/ThemeSwitcher";
-import Chat from "./_common/components/Chat";
-import { ThemeWrapper } from "./_common/components/themes/ThemeWrapper";
+import ExperienceSection from "./_common/components/HomePage/Experience";
+import Footer from "./_common/components/HomePage/Footer";
+import HeroSection from "./_common/components/HomePage/HeroSection";
+import SkillsSection from "./_common/components/HomePage/Skills";
+import ThemeSwitcher from "./_common/components/Theme";
+import { ThemeWrapper } from "./_common/components/Theme/ThemeWrapper";
 
 export default function Home() {
   return (
     <ThemeWrapper>
       <div className="relative w-full h-screen">
         <ThemeSwitcher />
-        <Chat />
+        <HeroSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <Footer />
       </div>
     </ThemeWrapper>
   );

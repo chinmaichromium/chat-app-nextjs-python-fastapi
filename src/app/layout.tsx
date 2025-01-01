@@ -3,9 +3,9 @@ import "./globals.css";
 import { ThemeProvider } from "./_common/providers/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Chat with Bot",
+  title: "Portfolio Chinmai",
   description:
-    "Python FastAPI Chatbot with WebSockets, Next.js, Tailwind CSS and Zustand",
+    "This is a portfolio website for Chinmai. Fullstack engineer with 4+ years of experience.",
 };
 
 export default function RootLayout({
@@ -18,8 +18,6 @@ export default function RootLayout({
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
           disableTransitionOnChange
           themes={["light", "dark"]}
         >

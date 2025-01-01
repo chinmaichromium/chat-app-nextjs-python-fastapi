@@ -17,7 +17,7 @@ const colors = [
   { name: "Blue", value: "bg-blue-500" },
   { name: "Yellow", value: "bg-yellow-500" },
   { name: "Violet", value: "bg-violet-500" },
-  { name: "Lemon Blue", value: "bg-lemon-blue-500" },
+  { name: "Teal", value: "bg-teal-500" },
 ];
 
 const radiusOptions = [0, 0.3, 0.5, 0.75, 1.0];
@@ -52,7 +52,9 @@ export default function ThemeManager() {
                 key={color.name}
                 variant="outline"
                 className={`flex items-center justify-start space-x-2 ${
-                  baseColor === color.name ? "ring-2 ring-primary" : ""
+                  baseColor.toLowerCase() === color.name.toLowerCase()
+                    ? "ring-2 ring-primary"
+                    : ""
                 }`}
                 onClick={() =>
                   setBaseColor(color.name.toLowerCase() as typeof baseColor)

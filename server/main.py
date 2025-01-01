@@ -5,7 +5,7 @@ from openai import OpenAI
 import socketio
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path='../.env')
+load_dotenv(dotenv_path='.env.prod')
 openai_api_key = os.getenv("OPENAI_KEY")
 app_url = os.getenv("APP_URL")
 
@@ -15,15 +15,13 @@ if not openai_api_key or not app_url:
 
 app = FastAPI()
 
-# Configure Socket.IO with CORS
 sio = socketio.AsyncServer(
     async_mode="asgi",
-    cors_allowed_origins=["http://localhost:3000"],  # Update with your frontend origin
+    cors_allowed_origins=["http://localhost:3000"],  
 )
 app.mount("/socket.io", socketio.ASGIApp(socketio_server=sio))
 
 
-# Initialize the OpenAI client
 client = OpenAI(
     api_key=openai_api_key
 )
@@ -43,7 +41,6 @@ async def disconnect(sid):
 async def user_message(sid, data):
     print(f"Received message from {sid}: {data}")
     try:
-        # Use the custom OpenAI client for streaming
         stream = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
@@ -53,13 +50,11 @@ async def user_message(sid, data):
             stream=True,
         )
 
-        # Stream chunks to the frontend
         for chunk in stream:
             if chunk.choices[0].delta.content is not None:
                 content = chunk.choices[0].delta.content
                 await sio.emit("chat_message", content, to=sid)
 
-        # End of streaming signal
         await sio.emit("chat_message_end", {}, to=sid)
 
     except Exception as e:
@@ -71,9 +66,8 @@ async def user_message(sid, data):
         )
 
 
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
