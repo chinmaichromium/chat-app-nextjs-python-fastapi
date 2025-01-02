@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const HeroSection = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const textVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
@@ -30,11 +33,49 @@ const HeroSection = () => {
     },
   };
 
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1.2,
+      rotate: [0, 10, -10, 0],
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6">
-      <div className="max-w-4xl text-center">
+      <div className="max-w-4xl text-center relative">
         <h1 className="text-4xl md:text-6xl font-extrabold">
-          Hi, I’m <span className="text-primary">Chinmai</span>
+          Hi, I’m{" "}
+          <span
+            className="text-primary cursor-pointer relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Chinmai
+          </span>
+          {isHovered && (
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={imageVariants}
+              className="absolute left-1/2 transform -translate-x-1/2 top-[-100]"
+            >
+              <Image
+                src="/images/photo.jpeg"
+                alt="Chinmai"
+                height={"100"}
+                width={"100"}
+                style={{
+                  borderRadius: "100px",
+                }}
+              />
+            </motion.div>
+          )}
         </h1>
         <motion.h1
           initial="hidden"
