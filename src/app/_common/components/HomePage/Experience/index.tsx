@@ -47,10 +47,9 @@ const ExperienceSection = () => {
           {experiences.map((experience, index) => (
             <motion.div
               key={index}
-              className="experience-card bg-gray-800 p-6 rounded-lg shadow-lg overflow-hidden"
+              className="experience-card bg-secondary p-6 rounded-lg overflow-hidden"
               whileHover={{
-                scale: 1.03,
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
+                scale: 1.2  ,
               }}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -61,10 +60,10 @@ const ExperienceSection = () => {
                 onClick={() => toggleExpansion(index)}
               >
                 <div>
-                  <h3 className="text-2xl font-semibold text-primary-foreground">
+                  <h3 className="text-2xl font-semibold text-primary">
                     {experience.company}
                   </h3>
-                  <p className="text-primary">{experience.role}</p>
+                  <p>{experience.role}</p>
                   <p className="text-gray-400">{experience.period}</p>
                 </div>
                 <motion.span
@@ -78,7 +77,7 @@ const ExperienceSection = () => {
                 </motion.span>
               </div>
               <motion.div
-                className="mt-4 text-primary-foreground"
+                className="mt-4"
                 initial={false}
                 animate={{
                   height: expandedIndex === index ? "auto" : 0,
